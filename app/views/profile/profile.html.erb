@@ -1,0 +1,23 @@
+<h1><%= @user.email %>'s Profile</h1>
+
+<p>Email: <%= @user.email %></p>
+
+<div id='followers'>
+  <b>Following(<%= @user.following.count %>)</b>
+  <b>Follower(<%= @user.followers.count %>)</b>
+</div>
+
+
+<% if user_signed_in? && @user != current_user %>
+  <p><%= render 'follow_form'%></p>
+<% end %>
+
+<h3><%= @user.email %>'s Posts:</h3>
+
+<hr>
+
+<% @posts.each do |post| %>
+  <p><%=link_to post.title, post_path(post)%> by 
+  <%= post.user.email %>
+  <hr>
+<% end %>
